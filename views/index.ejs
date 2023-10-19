@@ -1,0 +1,59 @@
+<%- include('./partials/header.ejs') %>
+
+
+    <div class="container-fluid my-4">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 ">
+                <% if(message) { %>
+                    <div class="alert  alert-dismissible fade show alert-<%=message.type  %>" role="alert">
+                        <strong>
+                            <%= message.message %>
+                        </strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <% } %>
+                        <% if (data !='') { %>
+                            <table class="table .table-striped text-center p-4 ">
+                                <thead class=" bg-dark text-light">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">mobile</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% data.forEach((user,index) => { %>
+                                        <tr class="align-middle">
+                                            <th scope="row"><%= index %></th>
+                                            <td><img src="<%= user.image %>" alt="" width="100px" height="100px" class="img-fluid"></td>
+                                            <td><%= user.name %></td>
+                                            <td><%= user.email %></td>
+    
+                                            <td><%= user.mobile %></td>
+                                            <td>
+                                                <a href="/edit/<%=user._id  %>"><i class="fa-solid fa-pen-to-square text-success mx-2"></i></a>
+                                                <a href="/delete/<%= user._id %>"><i class="fa-solid fa-trash text-danger"></i></a>
+                                            </td>
+                                        </tr>
+                                     
+                                    <% }) %>
+
+                                </tbody>
+                            </table>
+
+                            <% }else { %>
+                                <h1 class="text-center text-info fs-3"> Data NOt Found!</h1>
+                                <% } %>
+
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./partials/footer.ejs') %>
