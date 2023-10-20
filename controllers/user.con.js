@@ -10,7 +10,8 @@ const getAllUsers = async (req, res) => {
 
 
     } catch (error) {
-        res.json({ type: 'danger', message: 'Users fetching failed ' })
+        console.log(error)
+        res.render('index',{ type: 'danger', message: 'Users fetching failed ' })
 
     }
 }
