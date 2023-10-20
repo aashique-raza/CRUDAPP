@@ -5,7 +5,7 @@ async function connectDB(URI) {
         const option = {
             dbName: process.env.DATABASE_NAME
         }
-        await mongoose.connect(URI, option);
+        await mongoose.connect(URI,{ useNewUrlParser: true, useUnifiedTopology: true });
         console.log(`database connected`)
 
     } catch (error) {
